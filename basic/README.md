@@ -12,7 +12,7 @@
 
 4. Create Channel:
 	
-	./network.sh createChannel -c dbmchannel
+	./network.sh createChannel -c dbmchannel -l blockmatrix
 
 5. Before we package the chaincode, we need to install the chaincode dependences. Navigate to the folder that contains the Go version of the asset-transfer (basic) chaincode:
 
