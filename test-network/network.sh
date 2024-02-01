@@ -299,7 +299,7 @@ function createChannel() {
   # more to create the channel creation transaction and the anchor peer updates.
   # configtx.yaml is mounted in the cli container, which allows us to use it to
   # create the channel artifacts
-  scripts/createChannel.sh $CHANNEL_NAME $CLI_DELAY $MAX_RETRY $VERBOSE
+  scripts/createChannel.sh $CHANNEL_NAME $LEDGER_TYPE $CLI_DELAY $MAX_RETRY $VERBOSE 
 }
 
 
@@ -414,6 +414,10 @@ while [[ $# -ge 1 ]] ; do
     ;;
   -c )
     CHANNEL_NAME="$2"
+    shift
+    ;;
+  -l )
+    LEDGER_TYPE="$2"
     shift
     ;;
   -ca )

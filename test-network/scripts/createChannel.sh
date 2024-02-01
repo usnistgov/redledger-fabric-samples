@@ -5,9 +5,10 @@
 . scripts/utils.sh
 
 CHANNEL_NAME="$1"
-DELAY="$2"
-MAX_RETRY="$3"
-VERBOSE="$4"
+LEDGER_TYPE="$2"
+DELAY="$3"
+MAX_RETRY="$4"
+VERBOSE="$5"
 : ${CHANNEL_NAME:="mychannel"}
 : ${DELAY:="3"}
 : ${MAX_RETRY:="5"}
@@ -19,7 +20,7 @@ fi
 
 createChannelTx() {
 	set -x
-	configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/${CHANNEL_NAME}.tx -channelID $CHANNEL_NAME
+	configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/${CHANNEL_NAME}.tx -channelID $CHANNEL_NAME -ledgerType $LEDGER_TYPE
 	res=$?
 	{ set +x; } 2>/dev/null
   verifyResult $res "Failed to generate channel configuration transaction..."
