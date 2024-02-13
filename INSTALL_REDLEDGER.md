@@ -57,5 +57,6 @@ $ ./network.sh down
 
 
 # Next steps
- - [ ] Write a script that automatize the process described above. 
+ - [ ] Write a script that automatize the process described above.
+ - [ ] Mention that you need to be in branch release 2.2 to use the blockmatrix ledger type.
 
