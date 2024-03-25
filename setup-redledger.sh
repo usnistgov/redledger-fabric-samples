@@ -22,3 +22,5 @@ echo "### Preparing to launch network ###"
 cd test-network
 echo "### launching network with blockmatrix ledgertype ###"
 ./network.sh up createChannel -c mychannel -ca -l blockmatrix
+echo "### Shutting down the network ###"
+./network.sh down
