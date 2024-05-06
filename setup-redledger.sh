@@ -14,7 +14,7 @@ cd ..
 echo "### Installing the fabric samples repository ###"
 curl -sSLO https://raw.githubusercontent.com/hyperledger/fabric/main/scripts/install-fabric.sh && chmod +x install-fabric.sh
 echo "### launching install fabric to get binaries and docker images v 2.4.8 to interact with the test-nertwork ###"
-./install-fabric.sh -f 2.4.8 binary docker
+./install-fabric.sh -f 2.5.6 binary docker
 echo "### Replacing binaries from redledger-fabric-samples with those from redledger-fabric ###"
 find bin/ -type f -not -name 'fabric*' -exec rm {} \;
 cp -r redledger-fabric/build/bin/ bin/
