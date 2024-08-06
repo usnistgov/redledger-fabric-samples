@@ -12,7 +12,7 @@ cp -r temp_redledger_repo/bin bin/
 # Maybe need to mkdir bin
 
 # Clean up: Remove the temporary repository directory
-rm -rf /path/to/temp_redledger_repo
+rm -rf temp_redledger_repo
 
 echo "### Binaries successfully pulled ###"
 
@@ -36,8 +36,4 @@ echo "### Preparing to launch network ###"
 cd test-network
 echo "### launching network with blockmatrix ledgertype .. ###"
 ./network.sh up createChannel -c mychannel -ca -l blockmatrix
-echo "### Shutting down the network ###"
-./network.sh down
-
-
 # Need some testing 
