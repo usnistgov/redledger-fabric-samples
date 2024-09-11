@@ -3,7 +3,7 @@
 ## Setup
 
 1. Install git, and docker on the PI 
-(Maybe some operations to got with the login for docker)
+(Maybe some operations to do with the login for docker)
 
 2. Clone this repository 
 ```
