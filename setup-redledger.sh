@@ -43,12 +43,12 @@ echo "### Binaries for $ARCH successfully pulled ###"
 echo "### Getting the docker images for $ARCH ... ###"
 
 if [ "$ARCH" == "amd64" ]; then
-    docker pull --platform linux/arm64 csd773/redledger-fabric-peer
-    docker pull --platform linux/arm64 csd773/redledger-fabric-orderer
-    docker pull --platform linux/arm64 csd773/redledger-fabric-tools
-    docker pull --platform linux/arm64 csd773/redledger-fabric-ca
-    docker pull --platform linux/arm64 csd773/redledger-fabric-ccenv
-    docker pull --platform linux/arm64 csd773/redledger-fabric-baseos
+    docker pull --platform linux/amd64 csd773/redledger-fabric-peer
+    docker pull --platform linux/amd64 csd773/redledger-fabric-orderer
+    docker pull --platform linux/amd64 csd773/redledger-fabric-tools
+    docker pull --platform linux/amd64 csd773/redledger-fabric-ca
+    docker pull --platform linux/amd64 csd773/redledger-fabric-ccenv
+    docker pull --platform linux/amd64 csd773/redledger-fabric-baseos
 else
     docker pull --platform linux/arm64 csd773/redledger-fabric-peer
     docker pull --platform linux/arm64 csd773/redledger-fabric-orderer
