@@ -1,5 +1,22 @@
-# Clone the redledger-fabric repository
-echo "### Getting the binaries ... ###"
+#!/bin/bash
+
+# Check if architecture is provided as an argument
+if [ -z "$1" ]; then
+    echo "Usage: $0 <architecture>"
+    echo "Please specify architecture: amd64 or arm64"
+    exit 1
+fi
+
+ARCH=$1
+
+# Validate architecture argument
+if [[ "$ARCH" != "amd64" && "$ARCH" != "arm64" ]]; then
+    echo "Invalid architecture: $ARCH"
+    echo "Please specify architecture: amd64 or arm64"
+    exit 1
+fi
+
+echo "### Getting the binaries for $ARCH ... ###"
 git clone --single-branch --branch binaries https://github.com/usnistgov/redledger-fabric.git temp_redledger_repo
 
 # Check if the repository was cloned successfully
@@ -7,33 +24,44 @@ if [ $? -ne 0 ]; then
     echo "Failed to clone the repository."
     exit 1
 fi
-# Copy the entire bin directory from temp_redledger_repo to redledger-fabric-samples
-cp -r temp_redledger_repo/bin bin/
-# Maybe need to mkdir bin
+
+# Check if bin directory exists, create if not
+if [ ! -d "bin" ]; then
+    mkdir bin
+fi
+
+# Copy the binaries based on the architecture
+cp -r temp_redledger_repo/bin/$ARCH/* bin/
 
 # Clean up: Remove the temporary repository directory
 rm -rf temp_redledger_repo
 
-echo "### Binaries successfully pulled ###"
-
+echo "### Binaries for $ARCH successfully pulled ###"
 
 # Pull the Docker images
-# Need to find a way to specify that it needs to pull the ARM images
-echo "### Getting the docker images ... ###"
-docker pull csd773/redledger-fabric-peer
-docker pull csd773/redledger-fabric-orderer
-docker pull csd773/redledger-fabric-tools
-docker pull csd773/redledger-fabric-ca
-docker pull csd773/redledger-fabric-ccenv
-docker pull csd773/redledger-fabric-baseos
+# Assuming there are architecture-specific images for Docker as well
+echo "### Getting the docker images for $ARCH ... ###"
 
-echo "### Docker images successfully pulled ###"
-# Need to update the network.sh script with the environment variable pointing at redledger ones instead of hyperledger
-# Need to update the network.sh script to include the ledgertype. Refer to this commit : https://github.com/usnistgov/redledger-fabric-samples/commit/8ff57cef2cc973a70c63ffe56b2b6ccf963e072f
+if [ "$ARCH" == "amd64" ]; then
+    docker pull --platform linux/arm64 csd773/redledger-fabric-peer
+    docker pull --platform linux/arm64 csd773/redledger-fabric-orderer
+    docker pull --platform linux/arm64 csd773/redledger-fabric-tools
+    docker pull --platform linux/arm64 csd773/redledger-fabric-ca
+    docker pull --platform linux/arm64 csd773/redledger-fabric-ccenv
+    docker pull --platform linux/arm64 csd773/redledger-fabric-baseos
+else
+    docker pull --platform linux/arm64 csd773/redledger-fabric-peer
+    docker pull --platform linux/arm64 csd773/redledger-fabric-orderer
+    docker pull --platform linux/arm64 csd773/redledger-fabric-tools
+    docker pull --platform linux/arm64 csd773/redledger-fabric-ca
+    docker pull --platform linux/arm64 csd773/redledger-fabric-ccenv
+    docker pull --platform linux/arm64 csd773/redledger-fabric-baseos
+fi
 
-Launch the test network
+echo "### Docker images for $ARCH successfully pulled ###"
+
+# Update the network.sh script (optional)
 echo "### Preparing to launch network ###"
 cd test-network
-echo "### launching network with blockmatrix ledgertype .. ###"
+echo "### Launching network with blockmatrix ledgertype ... ###"
 ./network.sh up createChannel -c mychannel -ca -l blockmatrix
-# Need some testing 
