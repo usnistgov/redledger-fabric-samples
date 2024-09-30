@@ -39,23 +39,22 @@ rm -rf temp_redledger_repo
 echo "### Binaries for $ARCH successfully pulled ###"
 
 # Pull the Docker images
-# Assuming there are architecture-specific images for Docker as well
 echo "### Getting the docker images for $ARCH ... ###"
 
 if [ "$ARCH" == "amd64" ]; then
-    docker pull --platform linux/amd64 csd773/redledger-fabric-peer
-    docker pull --platform linux/amd64 csd773/redledger-fabric-orderer
-    docker pull --platform linux/amd64 csd773/redledger-fabric-tools
-    docker pull --platform linux/amd64 csd773/redledger-fabric-ca
-    docker pull --platform linux/amd64 csd773/redledger-fabric-ccenv
-    docker pull --platform linux/amd64 csd773/redledger-fabric-baseos
+    docker pull csd773/redledger-fabric-peer
+    docker pull csd773/redledger-fabric-orderer
+    docker pull csd773/redledger-fabric-tools
+    docker pull csd773/redledger-fabric-ca
+    docker pull csd773/redledger-fabric-ccenv
+    docker pull csd773/redledger-fabric-baseos
 else
-    docker pull --platform linux/arm64 csd773/redledger-fabric-peer
-    docker pull --platform linux/arm64 csd773/redledger-fabric-orderer
-    docker pull --platform linux/arm64 csd773/redledger-fabric-tools
-    docker pull --platform linux/arm64 csd773/redledger-fabric-ca
-    docker pull --platform linux/arm64 csd773/redledger-fabric-ccenv
-    docker pull --platform linux/arm64 csd773/redledger-fabric-baseos
+    docker pull csd773/redledger-fabric-peer-arm
+    docker pull csd773/redledger-fabric-orderer-arm
+    docker pull csd773/redledger-fabric-tools-arm
+    docker pull csd773/redledger-fabric-ca-arm
+    docker pull csd773/redledger-fabric-ccenv-arm
+    docker pull csd773/redledger-fabric-baseos-arm
 fi
 
 echo "### Docker images for $ARCH successfully pulled ###"
@@ -65,3 +64,4 @@ echo "### Preparing to launch network ###"
 cd test-network
 echo "### Launching network with blockmatrix ledgertype ... ###"
 ./network.sh up createChannel -c mychannel -ca -l blockmatrix
+echo "### Network launched successfully ###"
