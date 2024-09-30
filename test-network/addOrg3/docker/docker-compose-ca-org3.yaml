@@ -12,7 +12,7 @@ networks:
 services:
 
   ca_org3:
-    image: hyperledger/fabric-ca:latest
+    image: csd773/redledger-fabric-ca-arm:latest
     environment:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
       - FABRIC_CA_SERVER_CA_NAME=ca-org3
