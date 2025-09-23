@@ -1,0 +1,15 @@
+Debug: Script directory is: /c/Users/scc7/GolandProjects/redledger-samples/basic/network/scripts
+Debug: Detected scripts directory, using parent path
+Debug: PROTO_PATH=/c/Users/scc7/GolandProjects/redledger-samples/basic/network
+Debug: PROTO_FILE=/c/Users/scc7/GolandProjects/redledger-samples/basic/network/blockmatrix.proto
+Querying block matrix info for channel: dbmchannel
+Using proto file: /c/Users/scc7/GolandProjects/redledger-samples/basic/network/blockmatrix.proto
+size: 3
+blockCount: 6
+rowHashes: "\267\276\301+\n.\310$A\177\3756?sw\267\341\210\200\337}\343a\314\002\003\240y,&T\035"
+rowHashes: "U8\332\004\005\266\226b\213#FR\255\025\247\375\016\014lF\300\177P}S\335\2026\272\305\001k"
+rowHashes: "\321\232I\225\'\215\255\017\331=\371\274\000=\311\330\206\3051(k\211\000\013\342\203\336\256rh\352\344"
+columnHashes: "c\252;\016b\333i\364.p\245|\025Qi\037-\033\036\324\275\370=\256\032\277\037#aqV\376"
+columnHashes: "8\023\303\001\004\342\227\302R\303J\266f\t\014\366\344\352\242,\210\321\350qO\366\274\214[o\n\361"
+columnHashes: "}\202[\325\265\313_z;/\010\241Mw@\274\\V\260\307\001\303{\277$\232\301\370\215\240,\306"
+Matrix info decode complete for channel: dbmchannel

@@ -1,6 +1,6 @@
 1. Go to your root repository, example:
 
- Users\scc7\GolandProjects\fabric\blockmatrix-samples\basic
+ Users\scc7\GolandProjects\redledger-samples\basic
 
 2. Place yourself in the network folder:
 	
@@ -38,7 +38,7 @@ To confirm that you are able to use the peer CLI, check the version of the binar
 
 9. You can now create the chaincode package using the peer lifecycle chaincode package command:
 
-	peer lifecycle chaincode package DBM-chaincode.tar.gz --path ../chaincode/ --lang golang --label basic_1.0
+	peer lifecycle chaincode package DBM_chaincode.tar.gz --path ../chaincode/ --lang golang --label basic_1.0
 
 	
 
@@ -48,34 +48,42 @@ To confirm that you are able to use the peer CLI, check the version of the binar
 Let’s install the chaincode on the Org1 peer first. Set the following environment variables to operate the peer CLI as the Org1 admin user. The CORE_PEER_ADDRESS will be set to point to the Org1 peer, peer0.org1.example.com:
 
 	export CORE_PEER_TLS_ENABLED=true
+
 	export CORE_PEER_LOCALMSPID="Org1MSP"
+
 	export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+
 	export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+
 	export CORE_PEER_ADDRESS=localhost:7051
 
 Issue the peer lifecycle chaincode install command to install the chaincode on the peer:
 
-	peer lifecycle chaincode install DBM-chaincode.tar.gz
+	peer lifecycle chaincode install DBM_chaincode.tar.gz
 
 If the command is successful, the peer will generate and return the package identifier. This package ID (DIFFERENT FOR EVERYONE) will be used to approve the chaincode in the next step. 
 
 11. We can now install the chaincode on the Org2 peer. Set the following environment variables to operate as the Org2 admin and target the Org2 peer, peer0.org2.example.com.
 	
 	export CORE_PEER_TLS_ENABLED=true
+
 	export CORE_PEER_LOCALMSPID="Org2MSP"
+
 	export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+
 	export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+	
 	export CORE_PEER_ADDRESS=localhost:9051
 
 Issue the following command to install the chaincode:
 	
-	peer lifecycle chaincode install DBM-chaincode.tar.gz
+	peer lifecycle chaincode install DBM_chaincode.tar.gz
 
 
 12. Command to deply the chaincode on the channel defined before:
 
-	./network.sh deployCC -ccn DBM-chaincode -ccp ../chaincode -ccl go -c dbmchannel 
+	./network.sh deployCC -ccn DBM_chaincode -ccp ../chaincode -ccl go -c dbmchannel 
 
 13. Invoke the chaincode:
 
-	peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C dbmchannel -n DBM-chaincode --peerAddresses localhost:7051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt -c '{"function":"Put","Args":["[{\"Key\":\"key1\",\"Value\":\"value1\"}]"]}'
+	peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C dbmchannel -n DBM_chaincode --peerAddresses localhost:7051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt -c '{"function":"Put","Args":["[{\"Key\":\"key1\",\"Value\":\"value1\"}]"]}'
